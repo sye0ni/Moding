@@ -1,0 +1,10 @@
+services:
+  spring-boot:
+    restart: 'on-failure'
+    build:
+      dockerfile: Dockerfile
+      args:
+        PROFILE: prod
+    container_name: 'batch-prod'
+    ports:
+      - 8083:8083

@@ -1,0 +1,10 @@
+services:
+  spring-boot:
+    restart: 'on-failure'
+    build:
+      dockerfile: Dockerfile
+      args:
+        PROFILE: dev
+    container_name: 'funding-dev'
+    ports:
+      - 8084:8084

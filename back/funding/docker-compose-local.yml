@@ -1,0 +1,10 @@
+services:
+  spring-boot:
+    restart: 'on-failure'
+    build:
+      dockerfile: Dockerfile
+      args:
+        PROFILE: local
+    container_name: 'funding-local'
+    ports:
+      - 8084:8084

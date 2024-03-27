@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "net.devh.boot.grpc.examples.lib";
+option java_outer_classname = "FundingProto";
+
+message CallTossPayResponse {
+  string paymentKey = 1;
+}
+
+message CallTossPayRequest {
+  uint64 id = 1;
+  string method = 2;
+  uint64 amount = 3;
+  string orderId = 4;
+  string orderName = 5;
+  string successUrl = 6;
+  string failUrl = 7;
+}
+
+message CallTossPayConfirmRequest {
+  string paymentKey = 1;
+  string orderId = 2;
+  uint64 amount = 3;
+  uint64 id = 4;
+}
+
+message CallTossPayConfirmResponse {
+  string orderId = 1;
+}
+
+service OrderService {
+  rpc CallTossPay(CallTossPayRequest) returns (CallTossPayResponse){}
+  rpc CallTossPayConfirm(CallTossPayConfirmRequest) returns (CallTossPayConfirmResponse){}
+}

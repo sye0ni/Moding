@@ -1,0 +1,115 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.18'
+	id 'io.spring.dependency-management' version '1.1.4'
+	id 'com.diffplug.spotless' version '6.16.0'
+	id 'com.google.protobuf' version '0.9.2'
+}
+
+group = 'com.ssafy'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '11'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('springCloudVersion', "2021.0.9")
+}
+
+dependencies {
+	// gRPC
+	implementation 'net.devh:grpc-client-spring-boot-starter:2.13.1.RELEASE'
+
+	// protobuf
+	implementation 'com.google.protobuf:protobuf-java:3.22.2'
+
+	implementation project(':proto')
+
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'io.hypersistence:hypersistence-utils-hibernate-55:3.7.0'
+
+	// querydsl
+//	implementation "com.querydsl:querydsl-core"
+//	implementation "com.querydsl:querydsl-jpa"
+//	annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jpa" // querydsl JPAAnnotationProcessor 사용 지정
+
+	// cloud
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+	// kafka
+//	implementation 'org.apache.kafka:kafka-streams'
+	implementation 'org.springframework.kafka:spring-kafka'
+//	implementation 'org.springframework.cloud:spring-cloud-stream'
+//	implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka'
+
+
+	// swagger
+	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+	implementation 'io.springfox:springfox-swagger2:3.0.0'
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+
+	// elastic search
+	implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+//	implementation 'com.internetitem:logback-elasticsearch-appender'
+//	implementation 'dev.akkinoc.spring.boot:logback-access-spring-boot-starter'
+//	implementation 'net.logstash.logback:logstash-logback-encoder'
+	implementation 'com.internetitem:logback-elasticsearch-appender:1.6'
+	implementation 'dev.akkinoc.spring.boot:logback-access-spring-boot-starter:3.2.1'
+	implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: '7.2'
+
+	// openfeign
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+	implementation 'io.github.openfeign:feign-jackson:13.2.1'
+
+	// lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+spotless {
+	java {
+		target("**/*.java")
+		targetExclude("**/SecurityConfig.java", "**/SwaggerConfiguration.java", "**/generated/**")
+		googleJavaFormat().aosp()  // 구글 자바 포맷 적용
+		importOrder()  // import 순서 정의
+		removeUnusedImports()   // 사용하지 않는 import 제거
+		trimTrailingWhitespace()   // 공백 제거
+		endWithNewline()  // 끝부분 New Line 처리
+	}
+}
+
+task copyPrivate(type: Copy) {
+	copy {
+		from '../mooding_back_submodule'
+		include "application-funding-*.yml"
+		into 'src/main/resources'
+	}
+}
