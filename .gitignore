@@ -1,6 +1,7 @@
 HELP.md
 .gradle
 build/
+!gradle-wrapper.jar
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
@@ -35,3 +36,11 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### yml ###
+application-funding-*.yml
+application-batch-*.yml
+application-payment-*.yml
+application-reservation-*.yml
+application-user-*.yml
+application-gateway-*.yml
