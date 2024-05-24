@@ -22,26 +22,25 @@
 ---
 ## 2장. 서비스 소개
 ### 🏆 지금 인기 있는 펀딩은?
-
-![실검_gif](/uploads/4c6a4959ccc51a87a96bf3936d536caa/실검_gif.gif)
+![실검_gif](https://github.com/sye0ni/Moding/assets/91115868/1d32351e-3303-447d-8fb9-25b7af924251)
 
 ->**ElasticSearch**를 이용한 **실시간 영화 검색 순위** 
 
 
 ### 💳 터치 한 번에 결제 끝! 
-![결제_gif](/uploads/531d14a161e120ef5e40360ba38439af/결제_gif.gif)
+https://github.com/sye0ni/Moding/assets/91115868/07dbc68a-e0f4-4698-9d8c-bd284aad878c
 
 ->**토스페이먼츠**API를 이용한 쉽고**빠른 결제** 
 
 
 ### 👀 N명이 보고 있어요
-![예매_gif](/uploads/8eae973b8b4572c97cd5f480a5da181c/예매_gif.gif)
+![예매_gif](https://github.com/sye0ni/Moding/assets/91115868/09af9e4e-22fd-467b-b858-d65471ee510c)
 -> 긴장감 UP.**동시 접속자 수**를 볼 수 있는**좌석 예매**
 
 
 ---
 ## 3장. 아키텍처 소개
-![image](/uploads/ece7d63f1f35ac152a8c863b64b6ba1b/image.png)
+![아키텍처](https://github.com/sye0ni/Moding/assets/91115868/656895be-beff-4e6c-a093-e39ac6bbae3c)
 
 ### 주요 기술 스택
 **FE**: React.js, Vite, TypeScript, Recoil, SCSS, FCM
